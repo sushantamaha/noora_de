@@ -21,8 +21,6 @@ logs/
 
 # dbt packages and logs
 dbt_noora/logs/
-dbt_noora/target/
-dbt_noora/dbt_packages/
 
 # postgres data
 postgres-data/
