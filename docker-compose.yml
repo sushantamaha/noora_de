@@ -1,0 +1,73 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: noora-postgres
+    environment:
+      POSTGRES_USER: noora
+      POSTGRES_PASSWORD: noora123
+      POSTGRES_DB: whatsapp_communication
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./data/raw:/data/raw
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U noora -d whatsapp_communication"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    networks:
+      - noora_net
+
+  airflow:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: noora-airflow
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://noora:noora123@postgres:5432/whatsapp_communication
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+      _AIRFLOW_WWW_USER_USERNAME: admin
+      _AIRFLOW_WWW_USER_PASSWORD: admin
+  
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+      - ./data:/opt/airflow/data
+      - ./scripts:/opt/airflow/scripts
+      - ./dbt_noora:/opt/airflow/dbt_noora
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: standalone
+    networks:
+      - noora_net
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: noora-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    ports:
+      - "8081:80"
+    depends_on:
+      - postgres
+    networks:
+      - noora_net
+
+volumes:
+  postgres-data:
+  pgadmin-data:
+
+networks:
+  noora_net:
+    driver: bridge

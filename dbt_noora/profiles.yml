@@ -1,0 +1,12 @@
+noora_whatsapp:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: postgres
+      user: noora
+      password: noora123
+      port: 5432
+      dbname: whatsapp_communication
+      schema: public
+      threads: 4

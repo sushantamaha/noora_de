@@ -1,0 +1,7 @@
+pandas
+requests
+psycopg2-binary
+apache-airflow-providers-postgres
+apache-airflow-providers-docker
+dbt-postgres==1.8.0
+plotly

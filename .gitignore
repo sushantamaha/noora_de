@@ -1,0 +1,31 @@
+# Environments
+.env
+.venv
+env/
+venv/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+
+# Unit test / coverage reports
+.cache
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+
+# airflow logs
+airflow/logs/
+logs/
+
+# dbt packages and logs
+dbt_noora/logs/
+dbt_noora/target/
+dbt_noora/dbt_packages/
+
+# postgres data
+postgres-data/
+
+# data
+data/

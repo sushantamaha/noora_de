@@ -1,0 +1,36 @@
+# Git
+.git
+.github
+
+# Docker
+Dockerfile
+docker-compose.yml
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+
+# DBT
+dbt_noora/target/
+dbt_noora/logs/
+dbt_noora/dbt_packages/
+
+# Airflow
+airflow/logs/
+
+# Data
+postgres-data/
+data/
+
+# Notebooks
+notebooks/
+
+# IDE
+.vscode/
+.idea/

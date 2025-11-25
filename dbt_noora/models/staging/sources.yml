@@ -1,0 +1,12 @@
+# dbt_noora/models/staging/sources.yml
+version: 2
+
+sources:
+  - name: raw
+    database: whatsapp_communication
+    schema: public
+    tables:
+      - name: messages
+        identifier: messages   # this maps to public.messages
+      - name: statuses
+        identifier: statuses

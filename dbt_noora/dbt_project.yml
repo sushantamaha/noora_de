@@ -1,0 +1,18 @@
+
+name: 'noora_whatsapp'
+version: '1.0.0'
+config-version: 2
+
+profile: 'noora_whatsapp'
+
+model-paths: ["models"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  noora_whatsapp:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
+      +schema: marts
