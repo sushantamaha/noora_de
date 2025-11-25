@@ -11,7 +11,7 @@ This project sets up a data pipeline using Docker, Airflow, dbt, and Postgres to
 
 1.  **Clone the Repository**:
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/sushantamaha/noora_de.git
     cd data-pipeline-noora
     ```
 
