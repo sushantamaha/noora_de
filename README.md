@@ -12,7 +12,6 @@ This project sets up a data pipeline using Docker, Airflow, dbt, and Postgres to
 1.  **Clone the Repository**:
     ```bash
     git clone https://github.com/sushantamaha/noora_de.git
-    cd data-pipeline-noora
     ```
 
 2.  **Environment Variables**:
@@ -35,7 +34,6 @@ This project sets up a data pipeline using Docker, Airflow, dbt, and Postgres to
     -   `postgres`: The PostgreSQL database.
     -   `airflow`: The Airflow web server, scheduler, and worker.
     -   `pgadmin`: A web-based administration tool for Postgres.
-    -   `jupyter`: A Jupyter Notebook server.
 
 2.  **Create a New Airflow User (Optional)**:
     By default, you can log in to the Airflow UI with the username `admin` and password `admin`. To create a new user, run the following command from your terminal:
@@ -56,7 +54,6 @@ This project sets up a data pipeline using Docker, Airflow, dbt, and Postgres to
     -   **pgAdmin UI**: [http://localhost:8081](http://localhost:8081)
         -   **Username**: `admin@admin.com`
         -   **Password**: `admin`
-    -   **Jupyter Notebook**: [http://localhost:8888](http://localhost:8888)
 
 ## Data Pipeline Workflow
 
@@ -79,9 +76,6 @@ The data pipeline is orchestrated by Airflow and is defined in the `airflow/dags
         -   The `dim_messages` model creates a dimension table for messages.
         -   The `fct_data_quality_audits` model runs data quality checks to ensure the integrity of the data.
 
-4.  **Data Visualization**:
-    -   After the pipeline has run successfully, the transformed data can be visualized using the `notebooks/data_visualization.ipynb` Jupyter notebook.
-
 ## Docker Workflow
 
 The `docker-compose.yml` file orchestrates the different services required for the pipeline:
@@ -89,7 +83,6 @@ The `docker-compose.yml` file orchestrates the different services required for t
 -   **`postgres`**: This service runs a PostgreSQL 15 database. It uses a volume to persist data across container restarts.
 -   **`airflow`**: This service builds a custom Docker image using the provided `Dockerfile`. It runs the Airflow standalone command, which includes the webserver, scheduler, and worker. The local `dags`, `logs`, `plugins`, `data`, `scripts`, and `dbt_noora` directories are mounted into the container, allowing you to develop and test your DAGs locally.
 -   **`pgadmin`**: This service runs the pgAdmin 4 web interface, which can be used to connect to the `postgres` service and inspect the database.
--   **`jupyter`**: This service runs a Jupyter Notebook server, which can be used to visualize the transformed data. The `notebooks` directory is mounted into the container, so you can access the `data_visualization.ipynb` file.
 
 ## How to Stop
 
