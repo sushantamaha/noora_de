@@ -1,0 +1,41 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "pincode": "400072"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [72.8650, 19.1050],
+            [72.8750, 19.1050],
+            [72.8750, 19.1150],
+            [72.8650, 19.1150],
+            [72.8650, 19.1050]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "pincode": "400023"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [72.8400, 18.9350],
+            [72.8500, 18.9350],
+            [72.8500, 18.9450],
+            [72.8400, 18.9450],
+            [72.8400, 18.9350]
+          ]
+        ]
+      }
+    }
+  ]
+}
